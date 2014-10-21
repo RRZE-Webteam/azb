@@ -38,7 +38,7 @@ class bewerbungAttachments extends formArray {
     $bewerbungsnummer = $this->myBewerbung;
     
     $subjects = array('bewerbungsbild', 'lebenslauf', 
-      'anschreiben', 'zeugnisse', 'sonstiges');
+      'anschreiben', 'zeugnisse', 'sonstiges', 'behindertenausweis');
       
     foreach($subjects as $subject) {
       $field = $this->{$subject};
@@ -53,8 +53,12 @@ class bewerbungAttachments extends formArray {
 	pg_prepare($databaseObj, "insert_".$subject, $myQuery);
 	
 	$fileInfo = $field->getValue();
+	
 	$content = pg_escape_bytea(file_get_contents($fileInfo['tmp_name']));
 	$mimeType = system("file -i -b ".$fileInfo['tmp_name']);
+	
+	if(empty($content))
+	  continue;
 	
 	$values = array($subject, $fileInfo['name'], $content, $mimeType,
 	  $bewerbungsnummer);

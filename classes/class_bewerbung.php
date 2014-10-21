@@ -71,8 +71,18 @@ class bewerbung extends formArray {
   }
   
   private function get_schulabschluesse() {
-    return array('abitur', 'fachabitur', 'mittlerer_bildungsabschluss', 
-		 'qualifizierender_hauptschulabschluss', 'keiner');
+    return array('abitur', 'fachabitur__sozial', 'fachabitur__technisch', 
+		 'fachabitur__wirtschaftlich', 
+		 'mittlerer_bildungsabschluss__naturwissenschaftlich',
+		 'mittlerer_bildungsabschluss__neusprachlich',
+		 'mittlerer_bildungsabschluss__sozial',
+		 'mittlerer_bildungsabschluss__technisch',
+		 'mittlerer_bildungsabschluss__wirtschaftlich',
+		 'quali__naturwissenschaftlich',
+		 'quali__neusprachlich',
+		 'quali__sozial',
+		 'quali__technisch',
+		 'quali__wirtschaftlich');
   }
   
   private function get_kenntnisse_bewertungen() {
