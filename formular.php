@@ -383,7 +383,7 @@
 	<label name="angestrebter_abschluss" class="control-label">
 	  angestrebter Schulabschluss
 	</label>
-    <?php print_auswahlfeld_schulabschluesse("angestrebter_abschluss"); ?>
+    <?php create_auswahlfeld_schulabschluesse("angestrebter_abschluss"); ?>
 
       </div>
       <div id="field_erworbener_abschluss" class="form-group">
@@ -391,7 +391,7 @@
 	  bereits erworbener Schulabschluss
 	</label>
 
-    <?php print_auswahlfeld_schulabschluesse("erworbener_abschluss"); ?>
+    <?php create_auswahlfeld_schulabschluesse("erworbener_abschluss"); ?>
       </div>
       <div id="field_notendurchschnitt_schulabschluss" class="form-group
 	form-subgroup">
