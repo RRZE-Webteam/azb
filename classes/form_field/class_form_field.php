@@ -24,7 +24,7 @@ abstract class formField {
 	$this->myFlags = array_unique($this->myFlags);
     }
     
-    protected function unsetFlag($flag) {
+    public function unsetFlag($flag) {
 	if(($key = array_search($flag, $this->myFlags)) !== FALSE) {
 	    unset($this->myFlags[$key]);
 	}

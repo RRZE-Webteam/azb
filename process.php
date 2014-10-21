@@ -41,7 +41,9 @@ session_start();
   bindFields(array('angestrebter_abschluss', 'erworbener_abschluss',
 		   'notendurchschnitt_schulabschluss', 'note_deutsch',
 		   'note_englisch', 'note_mathematik', 'note_informatik',
-		   'hobbys', 'berufsausbildung', 'studium'), $bewerbung);
+		   'hobbys', 'berufsausbildung', 'studium', 'anmerkungen',
+		   'kenntnisse_office', 'kenntnisse_betriebssysteme',
+		   'kenntnisse_netzwerke', 'kenntnisse_hardware'), $bewerbung);
 
   $bewerbung->setBewerber($bewerber);
 
@@ -69,9 +71,8 @@ session_start();
 //############################################################################
 
   $attachments = new bewerbungAttachments();
-
-  bindFields(array('bewerbungsbild', 'bewerbungsunterlagen',
-    'behindertenausweis'), $attachments, $_FILES);
+  bindFields(array('bewerbungsbild', 'lebenslauf', 'anschreiben', 'zeugnisse', 
+    'sonstiges', 'behindertenausweis'), $attachments, $_FILES);
 
   $bewerbung->setAttachments($attachments);
 

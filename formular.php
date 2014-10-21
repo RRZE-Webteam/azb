@@ -39,9 +39,10 @@
 <html>
 <head>
   <meta charset="UTF-8" />
-  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" 
-    href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+    href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css" />
+  <link rel="stylesheet" href="style.css" />
   <script 
     src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js">
   </script>
@@ -71,19 +72,39 @@
     '900007':'Ungültiger Dateityp',
     '900008':'Datei zu groß'
   };
+
   
   $(document).ready(function(){
-      if(showProcess=='1')
-      {
-	var json = $.getJSON('getprocess.php')
-	  .done(function(data) {
-	    initializeForm(data);
-	    showObjections(data);
-	  })
-	  .fail(function() {
-	    $('#errorDisplay').text('Ungültige Prozess-ID');
-	  });
+    //bind event handlers first
+    $("#erworbener_abschluss").change(function() {
+      var value = $('option:selected', this).val();
+      var feldNotendurchschnitt = 
+	$("#field_notendurchschnitt_schulabschluss");
+      
+      
+      if(value=='keiner') {
+	feldNotendurchschnitt.hide();
       }
+      else {
+	feldNotendurchschnitt.show();
+      }
+    })
+    .trigger('change');
+    
+    //TODO: event handler for Praktika
+    
+    //then initialize form controls
+    if(showProcess=='1')
+    {
+      var json = $.getJSON('getprocess.php')
+	.done(function(data) {
+	  initializeForm(data);
+	  showObjections(data);
+	})
+	.fail(function() {
+	  $('#errorDisplay').text('Ungültige Prozess-ID');
+	});
+    }
   });
   
   function zeigePraktikaFelder(number) {
@@ -112,11 +133,12 @@
 		  "postleitzahl", "ort", "email",
 		  "notendurchschnitt_schulabschluss"];
 		  
-    var textareas = ["studium", "berufsausbildung", "hobbys"];
+    var textareas = ["studium", "berufsausbildung", "hobbys", "anmerkungen"];
     
     var spinners = ["englisch", "mathematik", "informatik", "deutsch"];
-   
     
+    var selects = ["anrede", "kenntnisse_office", "kenntnisse_betriebssysteme",
+		   "kenntnisse_netzwerke", "kenntnisse_hardware"];
   
     inputs.forEach(function(field) {
       $("input[name='"+field+"']").attr('value', json.data[field]);
@@ -138,7 +160,10 @@
     
     changeDatum("geburtsdatum", datum);
     
-    $("select[name='anrede']").val(json.data.anrede);
+    selects.forEach(function(field) {
+      $("select[name='"+ field +"']").val(json.data[field]);
+    });
+    
     
     console.log(json);
     
@@ -157,7 +182,8 @@
     .val(json.data.angestrebter_abschluss);
     
     $("select[name='erworbener_abschluss']")
-    .val(json.data.erworbener_abschluss);
+    .val(json.data.erworbener_abschluss)
+    .trigger('change');
     
     anzahlPraktika = json.data.anzahl_praktika;
     $("select[id=ddl_anzahl_praktika]").val(anzahlPraktika);
@@ -192,7 +218,7 @@
     <div class="panel-heading">Persönliche Daten</div>
     <div class="panel-body">
       <div id="field_anrede" class="form-group">
-	<label name="anrede" class="control-label">Anrede</label>
+	<label name="anrede" class="control-label">Anrede*</label>
 	<div class="input-group">
 	  <select name="anrede" class="form-control">
 	    <option value="herr">Herr</option>
@@ -203,36 +229,88 @@
 	</div>
       </div>
       <div id="field_name" class="form-group">
-	<label name="name" class="control-label">Name</label>
+	<label name="name" class="control-label">Name*</label>
 	<input name="name" class="form-control" required="required" />
       </div>
       <div id="field_vorname" class="form-group">
-	<label name="vorname" class="control-label">Vorname</label>
+	<label name="vorname" class="control-label">Vorname*</label>
 	<input name="vorname" class="form-control" required="required" />
       </div>            
       <div class="datum" id="field_datum" class="form-group">
-	<label  class="control-label">Geburtsdatum</label>
+	<label  class="control-label">Geburtsdatum*</label>
 	<?php print_auswahlfeld_datum('geburtsdatum'); ?>
       </div>            
       <div id="field_adresse" class="form-group">
-	<label name="adresse" class="control-label">Adresse</label>
+	<label name="adresse" class="control-label">Adresse*</label>
 	<input name="adresse" class="form-control" required="required" />
       </div>  
       <div id="field_postleitzahl" class="form-group">
-	<label name="postleitzahl" class="control-label">Postleitzahl</label>
+	<label name="postleitzahl" class="control-label">Postleitzahl*</label>
 	<input name="postleitzahl" class="form-control" required="required" />
       </div>   
       <div id="field_ort" class="form-group">
-	<label name="ort" class="control-label">Ort</label>
+	<label name="ort" class="control-label">Ort*</label>
 	<input name="ort" class="form-control" required="required" />
       </div>      
       <div id="field_email" class="form-group">
-	<label name="email" class="control-label">E-Mail</label>
+	<label name="email" class="control-label">E-Mail*</label>
 	<input name="email" class="form-control" required="required" 
 	  type="email" />
       </div>         
     </div>
   </fieldset>
+  
+  <fieldset class="panel panel-primary">
+    <div class="panel-heading">Sonstiges</div>
+    <div class="panel-body">
+      <div id="field_hobbys" class="form-group">
+	<label name="hobbys" class="control-label">Hobbys*</label>
+	<textarea name="hobbys" class="form-control" 
+	  required="required"></textarea>
+      </div>    
+      <div id="field_anmerkungen" class="form-group">
+	<label name="anmerkungen" class="control-label">Anmerkungen</label>
+	<textarea name="anmerkungen" class="form-control"></textarea>
+      </div>    
+    </div>
+  </fieldset>
+  
+<fieldset class="panel panel-primary" class="form-group">
+    <div class="panel-heading">Dateianhänge</div>
+    <div class="panel-body">
+      <div id="field_bewerbungsbild" class="form-group">
+	<label class="control-label" 
+	  name="bewerbungsbild">Bewerbungsbild</label>
+	<input type="file" name="bewerbungsbild" />
+      </div> 
+      <div id="field_lebenslauf" class="form-group">
+	<label class="control-label" 
+	  name="lebenslauf">Lebenslauf</label>
+	<input type="file" name="lebenslauf" />
+      </div>    
+      <div id="field_anschreiben" class="form-group">
+	<label class="control-label" 
+	  name="anschreiben">Anschreiben</label>
+	<input type="file" name="anschreiben" />
+      </div>       
+      <div id="field_zeugnisse" class="form-group">
+	<label class="control-label" 
+	  name="zeugnisse">Zeugnisse</label>
+	<input type="file" name="zeugnisse" />
+      </div>     
+      <div id="field_sonstiges" class="form-group">
+	<label class="control-label" 
+	  name="sonstiges">Sonstiges</label>
+	<input type="file" name="sonstiges" />
+      </div>       
+      <div id="field_behindertenausweis" class="form-group">
+	<label class="control-label" 
+	  name="behindertenausweis">Behindertenausweis</label>
+	<input type="file" name="behindertenausweis" />
+      </div>       
+    </div>
+  </fieldset>
+  
   </div>
   <div class="col-md-6">
   <fieldset class="panel panel-primary">
@@ -243,39 +321,120 @@
 	  angestrebter Schulabschluss
 	</label>
 	<select name="angestrebter_abschluss" class="form-control">
+	  <option value="keiner">keine Angabe</option>
 	  <option value="abitur">Abitur</option>
-	  <option value="fachabitur">Fachabitur</option>
-	  <option value="mittlerer_bildungsabschluss">Mittlerer 
-	    Bildungsabschluss</option>
-	  <option value="qualifizierender_hauptschulabschluss">
-	    Qualifizierender Hauptschulabschluss
-	  </option>
+	  <optgroup label="Fachabitur">
+	    <option value="fachabitur_sozial">
+	      Fachabitur - sozialer Zweig
+	    </option>	  
+	    <option value="fachabitur_technisch">
+	      Fachabitur - technischer Zweig
+	    </option>
+	    <option value="fachabitur_wirtschaftlich">
+	      Fachabitur - wirtschaftlicher Zweig
+	    </option>  
+	  </optgroup>
+	  <optgroup label="mittlerer Bildungsabschluss">
+	    <option value="mittlerer_bildungsabschluss_naturwissenschaftlich">
+	      MBA - naturwissenschaftlicher Zweig
+	    </option>
+	    <option value="mittlerer_bildungsabschluss_neusprachlich">
+	      MBA - neusprachlicher Zweig
+	    </option>
+	    <option value="mittlerer_bildungsabschluss_sozial">
+	      MBA - sozialer Zweig
+	    </option>
+	    <option value="mittlerer_bildungsabschluss_technisch">
+	      MBA - technischer Zweig
+	    </option>
+	    <option value="mittlerer_bildungsabschluss_wirtschaftlich">
+	      MBA - wirtschaftlicher Zweig
+	    </option>	    
+	  </optgroup>
+	  <optgroup label="qualifizierender Hauptschulabschluss">
+	    <option value="qualli_naturwissenschaftlich">
+	      Quali - naturwissenschaftlicher Zweig
+	    </option>
+	    <option value="qualli_neusprachlich">
+	      Quali - neusprachlicher Zweig
+	    </option>
+	    <option value="qualli_sozial">
+	      Quali - sozialer Zweig
+	    </option>
+	    <option value="qualli_technisch">
+	      Quali - technischer Zweig
+	    </option>
+	    <option value="qualli_wirtschaftlich">
+	      Quali - wirtschaftlicher Zweig
+	    </option>	    
+	  </optgroup>
 	</select>
       </div>
       <div id="field_erworbener_abschluss" class="form-group">
 	<label name="erworbener_abschluss" class="control-label">
 	  bereits erworbener Schulabschluss
 	</label>
-	<select name="erworbener_abschluss" class="form-control">
-	  <option value="abitur">Abitur</option>
-	  <option value="fachabitur">Fachabitur</option>
-	  <option value="mittlerer_bildungsabschluss">Mittlerer 
-	    Bildungsabschluss</option>
-	  <option value="qualifizierender_hauptschulabschluss">
-	    Qualifizierender Hauptschulabschluss
-	  </option>
+	<select name="erworbener_abschluss" id="erworbener_abschluss" 
+	   class="form-control">
 	  <option value="keiner">keiner</option>
+	  <option value="abitur">Abitur</option>
+	  <optgroup label="Fachabitur">
+	    <option value="fachabitur_sozial">
+	      Fachabitur - sozialer Zweig
+	    </option>	  
+	    <option value="fachabitur_technisch">
+	      Fachabitur - technischer Zweig
+	    </option>
+	    <option value="fachabitur_wirtschaftlich">
+	      Fachabitur - wirtschaftlicher Zweig
+	    </option>  
+	  </optgroup>
+	  <optgroup label="mittlerer Bildungsabschluss">
+	    <option value="mittlerer_bildungsabschluss_naturwissenschaftlich">
+	      MBA - naturwissenschaftlicher Zweig
+	    </option>
+	    <option value="mittlerer_bildungsabschluss_neusprachlich">
+	      MBA - neusprachlicher Zweig
+	    </option>
+	    <option value="mittlerer_bildungsabschluss_sozial">
+	      MBA - sozialer Zweig
+	    </option>
+	    <option value="mittlerer_bildungsabschluss_technisch">
+	      MBA - technischer Zweig
+	    </option>
+	    <option value="mittlerer_bildungsabschluss_wirtschaftlich">
+	      MBA - wirtschaftlicher Zweig
+	    </option>	    
+	  </optgroup>
+	  <optgroup label="qualifizierender Hauptschulabschluss">
+	    <option value="qualli_naturwissenschaftlich">
+	      Quali - naturwissenschaftlicher Zweig
+	    </option>
+	    <option value="qualli_neusprachlich">
+	      Quali - neusprachlicher Zweig
+	    </option>
+	    <option value="qualli_sozial">
+	      Quali - sozialer Zweig
+	    </option>
+	    <option value="qualli_technisch">
+	      Quali - technischer Zweig
+	    </option>
+	    <option value="qualli_wirtschaftlich">
+	      Quali - wirtschaftlicher Zweig
+	    </option>	    
+	  </optgroup>
 	</select>
       </div>
-      <div id="field_notendurchschnitt_schulabschluss" class="form_group">
+      <div id="field_notendurchschnitt_schulabschluss" class="form-group 
+	form-subgroup">
 	<label name="notendurchschnitt_schulabschluss" class="control-label">
-	  Notendurchschnitt
+	  Notendurchschnitt*
 	</label>
 	<input name="notendurchschnitt_schulabschluss" class="form-control" />
       </div>      
       <div class="form-group">
 	<label name="einzelnoten_schulzeugnis">
-	  Einzelnoten im letzten Schulzeugnis
+	  Einzelnoten im letzten Schulzeugnis*
 	</label>
 	<div class="row">
 	  <div class="col-lg-3">
@@ -389,40 +548,59 @@
       <?php } ?>
       </div>
   </fieldset>
-  </div>
-  </div><!--row-->
-  <div class="row">
-  <div class="col-md-6">
+
   <fieldset class="panel panel-primary">
-    <div class="panel-heading">Diverses</div>
-    <div class="panel-body">
-      <div id="field_hobbys" class="form-group">
-	<label name="hobbys" class="control-label">Hobbys</label>
-	<textarea name="hobbys" class="form-control" 
-	  required="required"></textarea>
-      </div>    
-    </div>
-  </fieldset>
-  </div>
-  <div class="col-md-6">
-  <fieldset class="panel panel-primary" class="form-group">
-    <div class="panel-heading">Dateianhänge</div>
-    <div class="panel-body">
-      <div id="field_bewerbungsbild">
-	<label class="control-label" 
-	  name="bewerbungsbild">Bewerbungsbild</label>
-	<input type="file" name="bewerbungsbild" />
-      </div> 
-      <div id="field_bewerbungsunterlagen" class="form-group">
-	<label class="control-label" 
-	  name="bewerbungsunterlagen">bewerbungsunterlagen</label>
-	<input type="file" name="bewerbungsunterlagen" />
-      </div>       
-      <div id="field_behindertenausweis" class="form-group">
-	<label class="control-label" 
-	  name="behindertenausweis">Behindertenausweis</label>
-	<input type="file" name="behindertenausweis" />
-      </div>       
+    <div class="panel-heading">IT-Kenntnisse</div>
+    <div class="panel-body">  
+    
+      <div id="field_kenntnisse_office" class="form-group">
+	<label name="kenntnisse_office" class="control-label">
+	  Office-Anwendungen
+	</label>
+	<select name="kenntnisse_office" class="form-control">
+	  <option value="0">keine Kenntnisse</option>
+	  <option value="1">Anfängerkenntnisse</option>
+	  <option value="2">Fortgeschrittenenkenntnisse</option>
+	  <option value="3">Expertenkenntnisse</option>
+	</select>
+      </div>
+    
+      <div id="field_kenntnisse_betriebssysteme" class="form-group">
+	<label name="kenntnisse_betriebssysteme" class="control-label">
+	  Betriebssysteme
+	</label>
+	<select name="kenntnisse_betriebssysteme" class="form-control">
+	  <option value="0">keine Kenntnisse</option>
+	  <option value="1">Anfängerkenntnisse</option>
+	  <option value="2">Fortgeschrittenenkenntnisse</option>
+	  <option value="3">Expertenkenntnisse</option>
+	</select>
+      </div>
+
+      <div id="field_kenntnisse_netzwerke" class="form-group">
+	<label name="kenntnisse_netzwerke" class="control-label">
+	  Netzwerke
+	</label>
+	<select name="kenntnisse_netzwerke" class="form-control">
+	  <option value="0">keine Kenntnisse</option>
+	  <option value="1">Anfängerkenntnisse</option>
+	  <option value="2">Fortgeschrittenenkenntnisse</option>
+	  <option value="3">Expertenkenntnisse</option>
+	</select>
+      </div>
+      
+      <div id="field_kenntnisse_hardware" class="form-group">
+	<label name="kenntnisse_hardware" class="control-label">
+	  Netzwerke
+	</label>
+	<select name="kenntnisse_hardware" class="form-control">
+	  <option value="0">keine Kenntnisse</option>
+	  <option value="1">Anfängerkenntnisse</option>
+	  <option value="2">Fortgeschrittenenkenntnisse</option>
+	  <option value="3">Expertenkenntnisse</option>
+	</select>
+      </div>
+      
     </div>
   </fieldset>
   </div>

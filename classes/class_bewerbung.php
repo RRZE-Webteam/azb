@@ -31,18 +31,25 @@ class bewerbung extends formArray {
 			 $this->get_schulabschluesse());
     $fields[] =	$fields['angestrebter_abschluss']
 		->fclone('erworbener_abschluss');
+		
+    $kenntnisseFeld = $fields['kenntnisse_office'] = new 
+      selectionField('kenntnisse_office', $this->get_kenntnisse_bewertungen());
+    
+    $fields[] = $kenntnisseFeld->fclone('kenntnisse_betriebssysteme');
+    $fields[] = $kenntnisseFeld->fclone('kenntnisse_netzwerke');
+    $fields[] = $kenntnisseFeld->fclone('kenntnisse_hardware');
     
     $fields[] = $genericIntegerField->fclone('note_deutsch');
     $fields[] = $genericIntegerField->fclone('note_englisch');
     $fields[] = $genericIntegerField->fclone('note_mathematik');
     $fields[] = $genericIntegerField->fclone('note_informatik');      
     
-    $fields['hobbys'] = new textField('hobbys', 2048);
-    $fields['hobbys']->setFlags(FFF_NONEMPTY, FFFILTER_TRIM);
+    $hobbies = $fields[] = new textField('hobbys', 2048);
+    $hobbies->setFlags(FFF_NONEMPTY, FFFILTER_TRIM);
     
     $fields[] = $genericTextArea->fclone('berufsausbildung');
     $fields[] = $genericTextArea->fclone('studium');
-    
+    $fields[] = $genericTextArea->fclone('anmerkungen'); 
     $fields['notendurchschnitt'] = 
       new textField('notendurchschnitt_schulabschluss', 4);
     $fields['notendurchschnitt']->setFlags(FFFILTER_TRIM);
@@ -66,6 +73,10 @@ class bewerbung extends formArray {
   private function get_schulabschluesse() {
     return array('abitur', 'fachabitur', 'mittlerer_bildungsabschluss', 
 		 'qualifizierender_hauptschulabschluss', 'keiner');
+  }
+  
+  private function get_kenntnisse_bewertungen() {
+    return array(0,1,2,3);
   }
   
   public function get_bewerbungsnummer() {
@@ -97,9 +108,11 @@ class bewerbung extends formArray {
 	(note_deutsch, note_englisch, 
 	note_mathematik, note_informatik, hobbys, studium, berufsausbildung, 
 	angestrebter_abschluss, erworbener_abschluss, 
-	notendurchschnitt_schulabschluss, bewerbernummer)
+	notendurchschnitt_schulabschluss, bewerbernummer, anmerkungen,
+	kenntnisse_office, kenntnisse_betriebssysteme, kenntnisse_netzwerke,
+	kenntnisse_hardware)
       VALUES
-	($1, $2, $3, $4, $5 ,$6, $7 , $8, $9, $10, $11)
+	($1, $2, $3, $4, $5 ,$6, $7 , $8, $9, $10, $11, $12, $13, $14, $15, $16)
       RETURNING bewerbungsnummer";
       
     pg_prepare($databaseObj, "insert_bewerbung", $myQuery);
@@ -121,7 +134,12 @@ class bewerbung extends formArray {
       $this->angestrebter_abschluss->getValue(),
       $this->erworbener_abschluss->getValue(),
       $notendurchschnitt,
-      $bewerbernummer
+      $bewerbernummer,
+      $this->anmerkungen->getValue(),
+      $this->kenntnisse_office->getValue(),
+      $this->kenntnisse_betriebssysteme->getValue(),
+      $this->kenntnisse_netzwerke->getValue(),
+      $this->kenntnisse_hardware->getValue()
     );
     
     $res = pg_execute($databaseObj, "insert_bewerbung", $values);

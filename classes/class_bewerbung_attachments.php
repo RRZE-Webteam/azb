@@ -13,19 +13,22 @@ class bewerbungAttachments extends formArray {
   }
   function __construct() {
     $fields = array();
-    $pdf = array('pdf');
+    $types = array('pdf', 'jpg', 'jpeg', 'doc', 'docx', 'png');
     
-    $fields['bewerbungsbild'] = new imageUploadField('bewerbungsbild', 
-      1024, 1024, 4096);
-    $fields['bewerbungsbild']->setFlags(FFF_NONEMPTY);
+    $genericUploadField = new uploadField('generic', $types, 10240);
+    $genericUploadField->setFlags(FFF_NONEMPTY);
     
-    $fields['bewerbungsunterlagen'] = new uploadField('bewerbungsunterlagen', 
-      $pdf, 10240);
-    $fields['bewerbungsunterlagen']->setFlags(FFF_NONEMPTY);
+    $fields[] = $genericUploadField->fclone('bewerbungsbild');
+    $fields[] = $genericUploadField->fclone('lebenslauf');
+    $fields[] = $genericUploadField->fclone('anschreiben');
+    $fields[] = $genericUploadField->fclone('zeugnisse');
+    $fields[] = $genericUploadField->fclone('sonstiges');
     
-    $fields['behindertenausweis'] = 
-      new uploadField('behindertenausweis', $pdf, 10240);
-    
+    $behindertenausweis = $fields[] = 
+      $genericUploadField->fclone('behindertenausweis');
+    $behindertenausweis->unsetFlag(FFF_NONEMPTY);
+
+
     foreach($fields as $field) {
       $this->addField($field);
     }
@@ -33,26 +36,27 @@ class bewerbungAttachments extends formArray {
   
   public function save($databaseObj, $path) {
     $bewerbungsnummer = $this->myBewerbung;
-    $this->bewerbungsbild->convertToJpeg();
     
-    $subjects = array('bewerbungsbild', 'bewerbungsunterlagen', 
-      'behindertenausweis');
+    $subjects = array('bewerbungsbild', 'lebenslauf', 
+      'anschreiben', 'zeugnisse', 'sonstiges');
       
     foreach($subjects as $subject) {
       $field = $this->{$subject};
       
       $myQuery = 
       "INSERT INTO uploads 
-	  (subjekt, dateiname, speicherort, zu_bewerbung)
+	  (subjekt, dateiname, content, mime_type, zu_bewerbung)
 	VALUES
-	  ($1, $2, $3, $4)
+	  ($1, $2, $3, $4, $5)
 	RETURNING upload_id";
 	
 	pg_prepare($databaseObj, "insert_".$subject, $myQuery);
 	
 	$fileInfo = $field->getValue();
+	$content = pg_escape_bytea(file_get_contents($fileInfo['tmp_name']));
+	$mimeType = system("file -i -b ".$fileInfo['tmp_name']);
 	
-	$values = array($subject, $fileInfo['name'], $path, 
+	$values = array($subject, $fileInfo['name'], $content, $mimeType,
 	  $bewerbungsnummer);
 	
 	$res = pg_execute($databaseObj, "insert_".$subject, $values);
@@ -62,8 +66,7 @@ class bewerbungAttachments extends formArray {
 	
 	$fileInfo = $field->getValue();
 	$ext = $field->getType();
-	
-	move_uploaded_file($fileInfo['tmp_name'], $path.$uploadId.'.'.$ext);
+
     }
   }
 }
