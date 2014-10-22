@@ -49,48 +49,48 @@
       <option value="keiner">keine Angabe</option>
       <option value="abitur">Abitur</option>
       <optgroup label="Fachabitur">
-        <option value="fachabitur_sozial">
+        <option value="fachabitur__sozial">
           Fachabitur - sozialer Zweig
         </option>
-        <option value="fachabitur_technisch">
+        <option value="fachabitur__technisch">
           Fachabitur - technischer Zweig
         </option>
-        <option value="fachabitur_wirtschaftlich">
+        <option value="fachabitur__wirtschaftlich">
           Fachabitur - wirtschaftlicher Zweig
         </option>
       </optgroup>
       <optgroup label="mittlerer Bildungsabschluss">
-        <option value="mittlerer_bildungsabschluss_naturwissenschaftlich">
+        <option value="mittlerer_bildungsabschluss__naturwissenschaftlich">
           MBA - naturwissenschaftlicher Zweig
         </option>
-        <option value="mittlerer_bildungsabschluss_neusprachlich">
+        <option value="mittlerer_bildungsabschluss__neusprachlich">
           MBA - neusprachlicher Zweig
         </option>
-        <option value="mittlerer_bildungsabschluss_sozial">
+        <option value="mittlerer_bildungsabschluss__sozial">
           MBA - sozialer Zweig
         </option>
-        <option value="mittlerer_bildungsabschluss_technisch">
+        <option value="mittlerer_bildungsabschluss__technisch">
           MBA - technischer Zweig
         </option>
-        <option value="mittlerer_bildungsabschluss_wirtschaftlich">
+        <option value="mittlerer_bildungsabschluss__wirtschaftlich">
           MBA - wirtschaftlicher Zweig
         </option>
       </optgroup>
       <optgroup label="qualifizierender Hauptschulabschluss">
-        <option value="qualli_naturwissenschaftlich">
-          Quali - naturwissenschaftlicher Zweig
+        <option value="quali__naturwissenschaftlich">
+          QA - naturwissenschaftlicher Zweig
         </option>
-        <option value="qualli_neusprachlich">
-          Quali - neusprachlicher Zweig
+        <option value="quali__neusprachlich">
+          QA - neusprachlicher Zweig
         </option>
-        <option value="qualli_sozial">
-          Quali - sozialer Zweig
+        <option value="quali__sozial">
+          QA - sozialer Zweig
         </option>
-        <option value="qualli_technisch">
-          Quali - technischer Zweig
+        <option value="quali__technisch">
+          QA - technischer Zweig
         </option>
-        <option value="qualli_wirtschaftlich">
-          Quali - wirtschaftlicher Zweig
+        <option value="quali__wirtschaftlich">
+          QA - wirtschaftlicher Zweig
         </option>
       </optgroup>
     </select>
