@@ -54,11 +54,13 @@ class bewerbungAttachments extends formArray {
 	
 	$fileInfo = $field->getValue();
 	
-	$content = pg_escape_bytea(file_get_contents($fileInfo['tmp_name']));
-	$mimeType = system("file -i -b ".$fileInfo['tmp_name']);
+	$filename = $fileInfo['tmp_name'];
 	
-	if(empty($content))
+	if(empty($filename))
 	  continue;
+	  
+	$content = pg_escape_bytea(file_get_contents($filename));
+	$mimeType = system("file -i -b ".$fileInfo['tmp_name']);
 	
 	$values = array($subject, $fileInfo['name'], $content, $mimeType,
 	  $bewerbungsnummer);

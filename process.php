@@ -43,7 +43,10 @@ session_start();
 		   'note_englisch', 'note_mathematik', 'note_informatik',
 		   'hobbys', 'berufsausbildung', 'studium', 'anmerkungen',
 		   'kenntnisse_office', 'kenntnisse_betriebssysteme',
-		   'kenntnisse_netzwerke', 'kenntnisse_hardware'), $bewerbung);
+		   'kenntnisse_netzwerke', 'kenntnisse_hardware',
+		   'kenntnisse_office_txt', 'kenntnisse_betriebssysteme_txt',
+		   'kenntnisse_netzwerke_txt', 'kenntnisse_hardware_txt'), 
+		    $bewerbung);
 
   $bewerbung->setBewerber($bewerber);
 
