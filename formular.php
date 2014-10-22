@@ -196,7 +196,10 @@
 		  "postleitzahl", "ort", "email",
 		  "notendurchschnitt_schulabschluss"];
 
-    var textareas = ["studium", "berufsausbildung", "hobbys", "anmerkungen"];
+    var textareas = ["studium", "berufsausbildung", "hobbys", "anmerkungen",
+		     "kenntnisse_betriebssysteme_txt", 
+		     "kenntnisse_hardware_txt", "kenntnisse_office_txt", 
+		     "kenntnisse_netzwerke_txt"];
 
     var spinners = ["englisch", "mathematik", "informatik", "deutsch"];
 
@@ -530,6 +533,14 @@
 	</select>
       </div>
 
+      <div id="field_kenntnisse_office_txt" class="form-group">
+	<label name="kenntnisse_office_txt" 
+	  class="control-label">Beschreibung</label>
+	<textarea name="kenntnisse_office_txt" class="form-control"></textarea>
+      </div>
+      
+      <hr />
+      
       <div id="field_kenntnisse_betriebssysteme" class="form-group">
 	<label name="kenntnisse_betriebssysteme" class="control-label">
 	  Betriebssysteme
@@ -538,7 +549,16 @@
 	  <?php create_skill_options(); ?>
 	</select>
       </div>
-
+      
+      <div id="field_kenntnisse_betriebssysteme_txt" class="form-group">
+	<label name="kenntnisse_betriebssysteme_txt" 
+	  class="control-label">Beschreibung</label>
+	<textarea name="kenntnisse_betriebssysteme_txt" 
+	  class="form-control"></textarea>
+      </div>
+      
+      <hr />
+      
       <div id="field_kenntnisse_netzwerke" class="form-group">
 	<label name="kenntnisse_netzwerke" class="control-label">
 	  Netzwerke
@@ -547,7 +567,16 @@
 	  <?php create_skill_options(); ?>
 	</select>
       </div>
-
+      
+      <div id="field_kenntnisse_netzwerke_txt" class="form-group">
+	<label name="kenntnisse_netzwerke_txt" 
+	  class="control-label">Beschreibung</label>
+	<textarea name="kenntnisse_netzwerke_txt" 
+	  class="form-control"></textarea>
+      </div>
+      
+      <hr />
+      
       <div id="field_kenntnisse_hardware" class="form-group">
 	<label name="kenntnisse_hardware" class="control-label">
 	  Netzwerke
@@ -556,7 +585,13 @@
 	  <?php create_skill_options(); ?>
 	</select>
       </div>
-
+      
+      <div id="field_kenntnisse_hardware_txt" class="form-group">
+	<label name="kenntnisse_hardware_txt" 
+	  class="control-label">Beschreibung</label>
+	<textarea name="kenntnisse_hardware_txt" 
+	  class="form-control"></textarea>
+      </div>
     </div>
   </fieldset>
   </div>

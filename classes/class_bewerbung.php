@@ -54,6 +54,11 @@ class bewerbung extends formArray {
       new textField('notendurchschnitt_schulabschluss', 4);
     $fields['notendurchschnitt']->setFlags(FFFILTER_TRIM);
     
+    $fields[] = $genericTextArea->fclone('kenntnisse_office_txt');
+    $fields[] = $genericTextArea->fclone('kenntnisse_betriebssysteme_txt');
+    $fields[] = $genericTextArea->fclone('kenntnisse_netzwerke_txt');
+    $fields[] = $genericTextArea->fclone('kenntnisse_hardware_txt');
+    
     foreach($fields as $field) {
       $this->addField($field);
     }
@@ -71,7 +76,8 @@ class bewerbung extends formArray {
   }
   
   private function get_schulabschluesse() {
-    return array('abitur', 'fachabitur__sozial', 'fachabitur__technisch', 
+    return array('keiner', 'abitur', 
+		 'fachabitur__sozial', 'fachabitur__technisch', 
 		 'fachabitur__wirtschaftlich', 
 		 'mittlerer_bildungsabschluss__naturwissenschaftlich',
 		 'mittlerer_bildungsabschluss__neusprachlich',
@@ -120,9 +126,12 @@ class bewerbung extends formArray {
 	angestrebter_abschluss, erworbener_abschluss, 
 	notendurchschnitt_schulabschluss, bewerbernummer, anmerkungen,
 	kenntnisse_office, kenntnisse_betriebssysteme, kenntnisse_netzwerke,
-	kenntnisse_hardware)
+	kenntnisse_hardware, kenntnisse_office_txt, 
+	kenntnisse_betriebssysteme_txt, kenntnisse_netzwerke_txt, 
+	kenntnisse_hardware_txt)
       VALUES
-	($1, $2, $3, $4, $5 ,$6, $7 , $8, $9, $10, $11, $12, $13, $14, $15, $16)
+	($1, $2, $3, $4, $5 ,$6, $7 , $8, $9, $10, $11, $12, $13, $14, $15, 
+	  $16, $17, $18, $19, $20)
       RETURNING bewerbungsnummer";
       
     pg_prepare($databaseObj, "insert_bewerbung", $myQuery);
@@ -149,7 +158,11 @@ class bewerbung extends formArray {
       $this->kenntnisse_office->getValue(),
       $this->kenntnisse_betriebssysteme->getValue(),
       $this->kenntnisse_netzwerke->getValue(),
-      $this->kenntnisse_hardware->getValue()
+      $this->kenntnisse_hardware->getValue(),
+      $this->kenntnisse_office_txt->getValue(),
+      $this->kenntnisse_betriebssysteme_txt->getValue(),
+      $this->kenntnisse_netzwerke_txt->getValue(),
+      $this->kenntnisse_hardware_txt->getValue()
     );
     
     $res = pg_execute($databaseObj, "insert_bewerbung", $values);
