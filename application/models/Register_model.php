@@ -6,7 +6,7 @@ class Register_model extends MY_Model
   {
     $data['geburtsdatum'] = date('Y-m-d', strtotime($data['geburtsdatum']));
     $data['passwort'] = hash('sha512', $data['passwort']);
-    $data['uuid'] = $this->gen_uuid();
+    $data['frontendkey'] = $this->gen_uuid();
 
     $this->db->conn_id->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
