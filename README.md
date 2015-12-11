@@ -25,5 +25,8 @@ Verwendete Bibliotheken
 * jQuery - jQuery UI
 * Bootstrap 3.2.0
 
+Lizenz
+=====
 
+GNU General Public License (GPL) Version 2 
 
