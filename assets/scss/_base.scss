@@ -1,0 +1,711 @@
+/**
+ * Typography
+ */
+
+@include fontFace('OpenSans','../fonts/OpenSans-Regular',$weight: normal,$style: normal);
+@include fontFace('OpenSans','../fonts/OpenSans-Italic',$weight: normal,$style: italic);
+@include fontFace('OpenSans','../fonts/OpenSans-Bold',$weight: bold,$style: normal);
+@include fontFace('OpenSans','../fonts/OpenSans-BoldItalic',$weight: bold,$style: italic);
+
+body, button, input, select, textarea {
+    color: $text;
+    font-family: "OpenSans", sans-serif;
+    font-size: 15px;
+    font-size: 1.5rem;
+    line-height: 1.6;
+}
+
+body {
+  background-color: #f0f0f3;
+}
+
+/*
+#content {
+  background-color: #FFF;
+  padding-left: $padding-content-lr;
+  padding-right: $padding-content-lr;
+  padding-bottom: $padding-content-tb;
+  padding-top: $padding-content-tb;
+}
+*/
+
+h1, h2, h3, h4, h5, h6 {
+    color: $header;
+    clear: both;
+    -ms-word-wrap: break-word;
+    word-wrap: break-word;
+}
+
+h1 {
+    font-size: 3.1rem;
+    line-height: 1.1613;
+    margin-bottom: 1.1613em;
+}
+
+h2 {
+    font-size: 2.6rem;
+    line-height: 1.3846;
+    margin-bottom: 0.9231em;
+    margin-top: 1.8462em;
+}
+
+h3 {
+    font-size: 2.2rem;
+    line-height: 1.3636;
+    margin-bottom: 1.0909em;
+    margin-top: 2.1818em;
+}
+
+h4 {
+    font-size: 1.8rem;
+    line-height: 1.3333;
+    margin-bottom: 1.3333em;
+    margin-top: 2.6667em;
+}
+
+h5, h6 {
+    font-size: 1.5rem;
+    line-height: 1.2;
+    margin-bottom: 1.6em;
+    margin-top: 3.2em;
+}
+
+p {
+    margin-bottom: 1.2em;
+}
+a {
+    color: $link;
+    &:hover, &:focus {
+        color: $medium-grey;
+    }
+}
+
+b, strong {
+    font-weight: 700;
+}
+
+dfn, cite, em, i {
+    font-style: italic;
+}
+
+blockquote {
+    border-left: 4px solid $medium-blue;
+    color: $medium-grey;
+    font-size: 18px;
+    font-size: 1.8rem;
+    font-style: italic;
+    line-height: 1.6667;
+    margin-bottom: 1.6667em;
+    padding-left: 0.7778em;
+    p {
+        margin-bottom: 1.6667em;
+    }
+    > p:last-child {
+        margin-bottom: 0;
+    }
+    cite, small {
+        color: $medium-grey;
+        font-size: 15px;
+        font-size: 1.5rem;
+        font-family: "OpenSans", sans-serif;
+        line-height: 1.6;
+    }
+    em, i, cite {
+        font-style: normal;
+    }
+    strong, b {
+        font-weight: 400;
+    }
+}
+
+address {
+    font-style: italic;
+    margin: 0 0 1.6em;
+}
+
+code, kbd, tt, var, samp {
+    font-family: Inconsolata, monospace;
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+}
+
+pre {
+    font-family: Inconsolata, monospace;
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+    background-color: $bg-grey;
+    border: 1px solid $light-grey;
+    color: $dark-grey;
+    line-height: 1.2;
+    margin-bottom: 1.6em;
+    max-width: 100%;
+    overflow: auto;
+    padding: 0.8em;
+    white-space: pre;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+abbr[title] {
+    border-bottom: 1px dotted #eaeaea;
+    border-bottom: 1px dotted rgba(51, 51, 51, 0.1);
+    cursor: help;
+}
+
+mark, ins {
+    background-color: #fff9c0;
+    text-decoration: none;
+}
+
+sup, sub {
+    font-size: 75%;
+    height: 0;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+
+sup {
+    bottom: 1ex;
+}
+
+sub {
+    top: .5ex;
+}
+
+small {
+    font-size: 75%;
+}
+
+big {
+    font-size: 125%;
+}
+
+/**
+ * Elements
+ */
+
+hr {
+    /*background-color: #eaeaea;
+    background-color: rgba(51, 51, 51, 0.1);
+    border: 0;
+    height: 1px;
+    margin-bottom: 1.6em;*/
+}
+
+ul, ol {
+    margin: 0 0 1.6em 1.3333em;
+}
+
+ul {
+    list-style: disc;
+}
+
+ol {
+    list-style: decimal;
+}
+
+li {
+    > ul, > ol {
+        margin-bottom: 0;
+    }
+}
+
+dl {
+    margin-bottom: 1.6em;
+}
+
+dt {
+    font-weight: bold;
+}
+
+dd {
+    margin-bottom: 1.6em;
+}
+
+table, th, td {
+    border: 1px solid $border;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border-width: 1px;
+    margin: 0 0 1.6em;
+    table-layout: fixed;
+    /* Prevents HTML tables from becoming too wide */
+    width: 100%;
+}
+
+caption, th, td {
+    font-weight: normal;
+    text-align: left;
+}
+
+th {
+    border-width: 0 1px 1px 0;
+    a {
+        color: $text;
+    }
+}
+
+td {
+    border-width: 0 1px 1px 0;
+}
+
+th, td {
+    padding: 0.4em;
+}
+
+img {
+    -ms-interpolation-mode: bicubic;
+    border: 0;
+    height: auto;
+    max-width: 100%;
+    vertical-align: middle;
+}
+
+figure {
+    margin: 0;
+}
+
+del {
+    opacity: 0.8;
+}
+
+/* Placeholder text color -- selectors need to be separate to work. */
+
+::-webkit-input-placeholder, :-moz-placeholder {
+    color: $medium-grey;
+    font-family: "OpenSans", sans-serif;
+}
+
+::-moz-placeholder {
+    color: $medium-grey;
+    font-family: "OpenSans", sans-serif;
+    opacity: 1;
+    /* Since FF19 lowers the opacity of the placeholder by default */
+}
+
+:-ms-input-placeholder {
+    color: $medium-grey;
+    font-family: "OpenSans", sans-serif;
+}
+
+/**
+ * Forms
+ */
+
+div#progress {
+    //margin-left: -$padding-content-lr !important;
+    //margin-right: -$padding-content-lr !important;
+
+    font-size: 0px;
+
+    border-radius: 4px;
+
+    background-color: $medium-grey;
+    //font-size: 0;
+    margin-bottom: 40px;
+    margin-top: 20px;
+
+    span:first-child {
+        border-radius: 4px;
+        padding-left: 28.6px;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    span {
+
+        background-color: $medium-grey;
+        display: inline-block;
+        font-size: 12pt;
+        height: 45px;
+        line-height: 45px;
+        padding-left: 32px;
+        padding-right: 22px;
+        position: relative;
+
+        color: #fff;
+
+      a {
+        color: #fff;
+      }
+
+        &.not-completed {
+          margin-right: -1px;
+        }
+
+        &.not-completed.active {
+          margin-right: 0;
+        }
+      }
+
+
+
+    span.completed {
+        background-color: $medium-grey;
+    
+
+      &::after {
+        border-bottom: 22.5px solid transparent;
+        border-left: 10px solid $medium-grey;
+        border-top: 22.5px solid transparent;
+        content: "";
+        height: 0;
+        margin-left: 21px;
+        position: absolute;
+        top: 0;
+        width: 0;
+        z-index: 100;
+      }
+    }
+    span.active {
+        background-color: $medium-blue;
+		color: #fff;
+        a {
+            color: #fff;
+        }
+		&::after {
+			border-bottom: 22.5px solid transparent;
+			border-left: 10px solid $medium-blue;
+			border-top: 22.5px solid transparent;
+			content: "";
+			height: 0;
+			margin-left: 21px;
+			position: absolute;
+			top: 0;
+			width: 0;
+			z-index: 100;
+		}
+	}
+}
+
+.form-required {
+	color: $red;
+	margin-left: 3px;
+}
+
+// Bootstrap overwrite
+
+.panel-default {
+	border-color: $border;
+}
+.panel-default > .panel-heading {
+    background-color: $bg-grey;
+    border-color: $border;
+    color: $text;
+}
+.btn-info {
+    background-color: $medium-blue;
+    border-color: $text-blue;
+    color: #fff;
+	&:hover, &:focus, &:active, &.active {
+		background-color: $text-blue;
+	}
+}
+
+.form-horizontal select {
+	margin-top: 7px;
+}
+
+/*.panel {
+	margin-bottom: 30px;
+}
+.panel-heading {
+    @extend h2;
+	margin: 0 0 10px;
+}
+.form-group {
+	margin: 10px 0;
+}*/
+
+/*button, input, textarea {
+    @include transparent($page,.9);
+    border-radius: 0;
+    line-height: 1.5;
+    margin: 0;
+    max-width: 100%;
+    vertical-align: baseline;
+}
+select {
+	line-height: 1.5;
+    margin: 0;
+    vertical-align: baseline;
+}
+
+button {
+    line-height: normal;
+}
+
+input {
+    line-height: normal;
+    background-image: -webkit-linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0));
+    /* Removing the inner shadow on iOS inputs */
+/*    border: 1px solid #eaeaea;
+    border: 1px solid rgba(51, 51, 51, 0.1);
+    color: $medium-grey;
+}
+
+textarea {
+    background-image: -webkit-linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0));
+    /* Removing the inner shadow on iOS inputs */
+/*    border: 1px solid $border;
+    color: $medium-grey;
+}
+label {
+	display: block;
+	margin: 5px 0;
+}
+input:focus, textarea:focus {
+    background-color: #fff;
+    border: 1px solid #c1c1c1;
+    border: 1px solid rgba(51, 51, 51, 0.3);
+    color: #333;
+}
+
+input:focus, select:focus {
+    outline: 2px solid #c1c1c1;
+    outline: 2px solid rgba(51, 51, 51, 0.3);
+}
+
+button[disabled], input[disabled], select[disabled], textarea[disabled] {
+    cursor: default;
+    opacity: .5;
+}
+
+button {
+    -webkit-appearance: button;
+    background-color: $dark-grey;
+    border: 0;
+    color: #fff;
+    cursor: pointer;
+    font-family: "OpenSans", sans-serif;
+    font-size: 12px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    padding: 0.7917em 1.5em;
+    text-transform: uppercase;
+}
+
+input {
+    &[type="button"], &[type="reset"], &[type="submit"] {
+        -webkit-appearance: button;
+        background-color: $dark-grey;
+        border: 0;
+        color: $page;
+        cursor: pointer;
+        font-family: "OpenSans", sans-serif;
+        font-size: 12px;
+        font-size: 1.2rem;
+        font-weight: 700;
+        padding: 0.7917em 1.5em;
+        text-transform: uppercase;
+        margin: 10px;
+    }
+}
+
+button:hover {
+    background-color: $medium-grey;
+    outline: 0;
+}
+
+input {
+    &[type="button"]:hover, &[type="reset"]:hover, &[type="submit"]:hover {
+        background-color: $medium-grey;
+        outline: 0;
+    }
+}
+
+button:focus {
+    background-color: $light-grey;
+    outline: 0;
+}
+
+input {
+    &[type="button"]:focus, &[type="reset"]:focus, &[type="submit"]:focus {
+        background-color: $light-grey;
+        outline: 0;
+    }
+    &[type="search"] {
+        -webkit-appearance: textfield;
+        &::-webkit-search-cancel-button, &::-webkit-search-decoration {
+            -webkit-appearance: none;
+        }
+    }
+}
+
+button::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
+
+input {
+    &::-moz-focus-inner {
+        border: 0;
+        padding: 0;
+    }
+    &[type="text"],
+	&[type="email"],
+	&[type="url"],
+	&[type="password"],
+	&[type="search"] {
+        padding: 0.375em;
+		width: 50%;
+    }
+}
+
+textarea {
+    padding: 0.375em;
+	width: 50%;
+    max-width: 100%;
+    overflow: auto;
+    vertical-align: top;
+}
+
+input {
+    &[type="text"]:focus,
+	&[type="email"]:focus,
+	&[type="url"]:focus,
+	&[type="password"]:focus,
+	&[type="search"]:focus {
+        outline: 0;
+    }
+}
+
+textarea:focus {
+    outline: 0;
+}
+
+input {
+    &[type="checkbox"], &[type="radio"] {
+        padding: 0;
+    }
+}*/
+
+/**
+ * Accessibility
+ */
+
+/* Text meant only for screen readers */
+
+.screen-reader-text {
+    clip: rect(1px, 1px, 1px, 1px);
+    height: 1px;
+    overflow: hidden;
+    position: absolute !important;
+    width: 1px;
+}
+
+/* must have higher specificity than alternative color schemes inline styles */
+
+.site .skip-link {
+    background-color: #f1f1f1;
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.2);
+    color: #21759b;
+    display: block;
+    font: bold 14px/normal "OpenSans", sans-serif;
+    left: -9999em;
+    outline: none;
+    padding: 15px 23px 14px;
+    text-decoration: none;
+    text-transform: none;
+    top: -9999em;
+}
+
+.logged-in .site .skip-link {
+    box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+    font: bold 14px/normal "Open Sans", sans-serif;
+}
+
+.site .skip-link:focus {
+    clip: auto;
+    height: auto;
+    left: 6px;
+    top: 7px;
+    width: auto;
+    z-index: 100000;
+}
+
+/**
+ * Alignments
+ */
+
+.alignleft {
+    display: inline;
+    float: left;
+    clear: both;
+}
+
+.alignright {
+    display: inline;
+    float: right;
+    clear: both;
+}
+
+.aligncenter {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    clear: both;
+}
+.alignnone {
+    clear: both;
+}
+
+blockquote.alignleft, .wp-caption.alignleft, img.alignleft {
+    margin: 0.4em 1.6em 1.6em 0;
+}
+
+blockquote.alignright, .wp-caption.alignright, img.alignright {
+    margin: 0.4em 0 1.6em 1.6em;
+}
+
+blockquote.aligncenter, .wp-caption.aligncenter, img.aligncenter {
+    clear: both;
+    margin-top: 0.4em;
+    margin-bottom: 1.6em;
+}
+
+.wp-caption {
+    &.alignleft, &.alignright, &.aligncenter {
+        margin-bottom: 1.2em;
+    }
+}
+
+/**
+ * Clearings
+ */
+
+.clear {
+    &:before, &:after {
+        content: "";
+        display: table;
+    }
+}
+
+.site {
+    &:before, &:after {
+        content: "";
+        display: table;
+    }
+}
+
+.site-content {
+    &:before, &:after {
+        content: "";
+        display: table;
+    }
+}
+
+.clear:after, .site:after, .entry-content:after, .comment-content:after, .site-content:after, .nav-links:after, .comment-navigation:after, .social-navigation ul:after, .textwidget:after {
+    clear: both;
+}
+

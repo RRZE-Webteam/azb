@@ -1,0 +1,23 @@
+<div class="kontakt">
+  <div class="vcard">
+   <div class="role"><h2>Ausbildungsleiterin</h2></div>
+   <span class="fn n">
+    <span class="given-name">Andrea</span>
+    <span class="family-name">Kugler</span>
+   </span>
+
+
+   <div class="adr work">
+     <div class="street-address">Martenstraße 1</div>
+       <span class="postal-code">91058</span>
+       <span class="locality">Erlangen</span>
+   </div>
+
+   <br />
+
+   <div class="tel">+49 (0)9131 85-28920</div>
+   <div class="e-mail">
+       <a href="mailto:andrea.kugler@fau.de" class="email" >andrea.kugler@fau.de</a>
+   </div>
+  </div>
+</div>

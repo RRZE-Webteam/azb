@@ -1,0 +1,24 @@
+/*
+ * Does the same thing as <meta name="viewport" content="width=device-width">,
+ * but in the future W3C standard way. -ms- prefix is required for IE10+ to
+ * render responsive styling in Windows 8 "snapped" views; IE10+ does not honor
+ * the meta tag. See https://core.trac.wordpress.org/ticket/25888.
+ */
+@-ms-viewport {
+	width: device-width;
+}
+@viewport {
+	width: device-width;
+}
+
+@media screen and (min-width: 480px) {
+
+	.site-logo {
+		width: 30%;
+	}
+	.header-text {
+		clear: none;
+		float: left;
+		white-space: nowrap;
+	}
+}

@@ -1,0 +1,19 @@
+div.kontakt
+{
+  @mixin vcard-label($label) {
+    &:before {
+      content: $label + ":";
+      display: inline-block;
+      margin-right: 0.5em;
+    }
+  }
+
+  .tel {
+    @include vcard-label("Telefon");
+  }
+
+  .e-mail {
+    @include vcard-label("E-Mail");
+  }
+
+}

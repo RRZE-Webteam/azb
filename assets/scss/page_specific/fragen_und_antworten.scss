@@ -1,0 +1,13 @@
+div.question-container {
+  margin-bottom: 3em;
+
+  div.question
+  {
+    $default_bg: #DCE2EA;
+    background-color: $default_bg;
+
+    padding: 1em 2em 1em 2em;
+
+    margin-bottom: 1em;
+  }
+}

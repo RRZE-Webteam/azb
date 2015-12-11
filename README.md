@@ -1,4 +1,12 @@
-azb
-===
+Preparation
+===================================
+Run setup.sh
 
-Bewerbungsportal fuer Auszubildende (IT)
+
+
+Compliling SASS stylesheet
+===================================
+sass assets/scss/style-rrze.scss assets/css/style-rrze.css
+
+
+

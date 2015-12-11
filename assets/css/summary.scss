@@ -1,0 +1,28 @@
+div.summary {
+//  font-size: 12pt;
+}
+
+span.field {
+  display: block;
+}
+
+span.field-label {
+  font-weight: bold;
+}
+
+
+span.field-label.note {
+  display: inline;
+}
+
+
+table.noten {
+  td:nth-child(2) {
+    width: 66%;
+  }
+}
+
+
+span.field.it_skills.rating {
+  font-weight: bold;
+}

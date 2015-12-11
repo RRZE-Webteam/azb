@@ -1,0 +1,52 @@
+div.upload {
+  $border_width: 1px;
+  $line_height: 30px;
+
+  margin-bottom: 2em;
+
+  div.existing-file, div.new-file {
+    overflow: visible;
+
+    border: $border_width solid grey;
+    border-radius: 2px;
+
+    background-color: $light-grey;
+  }
+
+  div.add-file-container {
+    clear: both;
+  }
+
+  .remove-file, .remove-upload {
+    span {
+      font-size: 9pt;
+      font-weight: bold;
+    }
+
+    height: $line_height;
+  }
+
+  .remove-file {
+    margin: -1px;
+    margin-right: 10px;
+    float: left;
+  }
+
+  label.control-label {
+    font-size: 150%;
+    display: block;
+  }
+
+  div.file-info {
+    height: $line_height - 2px;
+    line-height: $line_height - 2px;
+  }
+
+
+
+  div#upload_progress {
+    margin: auto;
+  }
+
+
+}

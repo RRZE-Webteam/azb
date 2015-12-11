@@ -1,0 +1,70 @@
+div.action
+{
+  font-size: 0.9em;
+
+  $default_bg: #85C8FF;
+  $default_fg: #24476D;
+
+  background-color: $default_bg;
+
+  a, & {
+    color: $default_fg;
+  } 
+
+  padding: 1.7em 3.4em 1.7em 3.4em;
+
+  margin-bottom: 2em;
+
+  h1 {
+    font-size: 18pt;
+    margin-bottom: 1em;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+
+  .action-icon {
+    font-size: 1.5em;
+    margin-top: -2pt;
+    float: left;
+    color: lighten($default_fg, 20%);
+    margin-right: 0.75em;
+  }
+
+  &.action-inactive {
+    pointer-events: none;
+    cursor: default;
+
+    background-color: lighten($default_bg, 15%);
+
+    &, a  {
+      color: lighten($default_fg, 30%) !important;
+    }
+
+    .action-icon {
+      color: lighten($default_fg, 40%);
+    }
+  }
+}
+
+
+
+div.step-navigation {
+  text-align: center;
+  padding-top: 1.5em;
+}
+
+
+
+.info-text{
+  float: right;
+  width: 50%;
+  margin: 0 -1px 0 -1px;
+  background-color: #EFEFF3;
+  padding: 1em 2em 1em 2em;
+  border: 1px solid $light-grey;
+  border-radius: 2px;
+  border-right: none;
+}

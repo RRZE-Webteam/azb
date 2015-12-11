@@ -1,0 +1,176 @@
+.site {
+	background-color: $page;
+	@include box-shadow(0px, 5px, 10px, #ababab, false);
+}
+/**
+ * Header
+ */
+
+.site-header {
+	background-color: $page;
+	background: url('../../assets/img/header.png') $page no-repeat top center;
+	border-bottom: 1px solid rgba(51, 51, 51, 0.1);
+	padding: 10px;
+	position: relative;
+	height: 200px;
+
+
+}
+
+.site-branding {
+	min-height: 2em;
+	padding: 10px;
+	float: left;
+	@include transparent(#FFF,.9);
+}
+.site-logo {
+	float:left;
+	padding-right: 20px;
+	padding-bottom: 10px;
+	max-width: 50%;
+}
+.header-text {
+	clear: both;
+	.site-title a {
+		text-decoration: none;
+		color: $text-blue;
+	}
+	.site-description a {
+		color: $text;
+}
+}
+.site-title {
+	font-family: "OpenSans", sans-serif;
+	font-size: 28px;
+	font-size: 2.8rem;
+	font-weight: 700;
+	line-height: 1;
+	clear: none;
+	margin: 5px 0 10px;
+  }
+
+.site-description {
+	font-family: "OpenSans", sans-serif;
+	font-size: 16px;
+	font-size: 1.6rem;
+	line-height: 1;
+	margin: 0;
+  opacity: 0.9;
+}
+
+/*
+ * Content
+ */
+
+.site-content {
+	padding: 20px 10px;
+	background-color: $page;
+}
+
+
+/**
+ * Footer
+ */
+
+.site-footer {
+	padding: 20px;
+	background-color: $dark-grey;
+	color: $page;
+
+	h2 {
+		color: $page;
+		font-size: 1.5rem;
+		font-weight: bold;
+		letter-spacing: 0.05em;
+		margin: 0 0 0.6em;
+		text-transform: uppercase;
+	}
+	a {
+		color: $light-grey;
+		&:hover, &:focus, &:active {
+			color: $page;
+		}
+	}
+
+  .links {
+    margin-left: 2em;
+  }
+
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+    }
+  }
+}
+
+aside#footer-logo-container
+{
+  float: right;
+}
+
+.footer-logo {
+  display: block;
+  float: right;
+	margin: 0 20px 20px 0;
+}
+
+.tech-navigation {
+	background: $bg-grey;
+	font-size: 1.2rem;
+	padding: 10px;
+	ul {
+		margin: 0;
+		list-style-type: none;
+	}
+	li {
+
+    .logout {
+      background-color: red;
+      font-weight: bold;
+    }
+
+		float: left;
+		a {
+			color: $link;
+			display: block;
+			padding: 5px 10px;
+			white-space: nowrap;
+			text-decoration: none;
+			&:hover, &:focus, &:active {
+				background: $light-grey;
+				text-decoration: underline;
+			}
+		}
+	}
+}
+
+/*
+ * Breadcrumbs
+*/
+
+#breadcrumbs {
+	padding: 20px 10px 0;
+	font-size: .8em;
+	h2 {
+		float: left;
+		margin: 0 3px 0 0;
+		font-size: 1em;
+		font-weight: 400;
+		color: $text;
+	}
+	ul, li {
+		float: left;
+		display: inline;
+		margin: 0;
+	}
+	li a, li strong {}
+	span.divider {
+		display: block;
+		float:left;
+		padding: 0 3px;
+	}
+}

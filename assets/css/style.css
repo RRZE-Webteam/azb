@@ -1,0 +1,102 @@
+span.field {
+  display: block; }
+
+span.field-label {
+  font-weight: bold; }
+
+span.field-label.note {
+  display: inline; }
+
+table.noten td:nth-child(2) {
+  width: 66%; }
+
+span.field.it_skills.rating {
+  font-weight: bold; }
+
+html {
+  height: 100%; }
+
+#main {
+  width: 800px;
+  max-width: 800px;
+  margin: auto; }
+
+body {
+  height: 100%;
+  width: 100%; }
+
+div#progress {
+  text-align: center;
+  font-size: 0;
+  margin-top: 40px;
+  margin-bottom: 40px; }
+
+div#progress span {
+  position: relative;
+  display: inline-block;
+  padding-left: 32px;
+  padding-right: 22px;
+  height: 45px;
+  line-height: 45px;
+  font-family: 'Roboto Condensed';
+  font-size: 12pt;
+  background-color: #DFDFDF; }
+  div#progress span, div#progress span a {
+    color: white; }
+  div#progress span.completed {
+    background-color: #91bac6; }
+    div#progress span.completed:after {
+      content: "";
+      z-index: 100;
+      position: absolute;
+      margin-left: 21px;
+      top: 0;
+      width: 0;
+      height: 0;
+      border-top: 22.5px solid transparent;
+      border-left: 10px solid #91bac6;
+      border-bottom: 22.5px solid transparent; }
+  div#progress span.summary {
+    background-color: #DFDFDF; }
+    div#progress span.summary:after {
+      content: "";
+      z-index: 100;
+      position: absolute;
+      margin-left: 21px;
+      top: 0;
+      width: 0;
+      height: 0;
+      border-top: 22.5px solid transparent;
+      border-left: 10px solid #DFDFDF;
+      border-bottom: 22.5px solid transparent; }
+  div#progress span.next {
+    background-color: #ff7858; }
+    div#progress span.next:after {
+      content: "";
+      z-index: 100;
+      position: absolute;
+      margin-left: 21px;
+      top: 0;
+      width: 0;
+      height: 0;
+      border-top: 22.5px solid transparent;
+      border-left: 10px solid #ff7858;
+      border-bottom: 22.5px solid transparent; }
+  div#progress span.active {
+    background-color: #007a90;
+    font-weight: bold; }
+    div#progress span.active:after {
+      content: "";
+      z-index: 100;
+      position: absolute;
+      margin-left: 21px;
+      top: 0;
+      width: 0;
+      height: 0;
+      border-top: 22.5px solid transparent;
+      border-left: 10px solid #007a90;
+      border-bottom: 22.5px solid transparent; }
+  div#progress span:first-child {
+    padding-left: 28.6px; }
+
+/*# sourceMappingURL=style.css.map */
