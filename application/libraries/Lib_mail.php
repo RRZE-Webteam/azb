@@ -3,17 +3,17 @@
 class Lib_mail {
   public function dispatchMail($subject, $recipient, $textContent)
   {
-    $message = Swift_Message::newInstance()
+    $CI = &get_instance();
 
-    ->setSubject($subject)
-    ->setFrom(array('rrze-fachinformatikerausbildung@fau.de' => 'RRZE Ausbildung'))
-    ->setTo($recipient)
-    ->setBody($textContent);
+    $CI->load->library('email');
 
-    $transport = Swift_MailTransport::newInstance();
-    $mailer = Swift_Mailer::newInstance($transport);
+    $CI->email->from('rrze-fachinformatikerausbildung@fau.de', 'RRZE Ausbildung');
+    $CI->email->subject($subject);
+    $CI->email->to($recipient);
+    $CI->email->message($textContent);
 
-    return $mailer->send($message);
+
+    return $CI->email->send();
   }
 
 
