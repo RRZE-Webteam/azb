@@ -1,6 +1,8 @@
-<?php $textFragments = get_instance()->lib_text->loadTextFragments('schritte/praktika/fragmente'); ?>
+<?php
 
-<?
+$textFragments = get_instance()->lib_text->loadTextFragments('schritte/praktika/fragmente'); ?>
+
+<?php
 // LABELS
 $labels = array(
   'firma' => $textFragments['label_firma'] . '<span class="form-required" title="Diese Angabe wird benötigt.">*</span>',

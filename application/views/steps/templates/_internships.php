@@ -1,5 +1,4 @@
 <?php
-
 $textFragments = $this->lib_text->loadTextFragments('schritte/praktika/fragmente');
 ?>
 
