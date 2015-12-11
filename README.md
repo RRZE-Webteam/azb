@@ -18,5 +18,12 @@ Bei Änderungen am Design muss evtl. die SASS Datei neu kompiliert werden:
 
 ```sass assets/scss/style-rrze.scss assets/css/style-rrze.css```
 
+Verwendete Bibliotheken
+=======================
+
+* Font OpenSans
+* jQuery - jQuery UI
+* Bootstrap 3.2.0
+
 
 
