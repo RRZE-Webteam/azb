@@ -14,6 +14,8 @@ Im Verzeichnis `application/config` sollten die beiden Dateien `config_editme.ph
 
 In `config.php` muss mindestens die `base_url` angepasst werden. In `database.php` sind die Einstellungen zum Datenbankzugriff vorzunehmen. Das Schema der Datenbank befindet sich unter `util/schema.sql`.
 
+Das Verzeichnis `system/upload_temp` muss von PHP beschrieben werden können, die Berechtigungen müssen also entsprechend angepasst werden.
+
 Bei Änderungen am Design muss evtl. die SASS Datei neu kompiliert werden:
 
 ```sass assets/scss/style-rrze.scss assets/css/style-rrze.css```
