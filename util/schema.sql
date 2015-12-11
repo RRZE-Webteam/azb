@@ -75,7 +75,7 @@ CREATE TABLE bewerbung (
     kenntnisse_office_txt text,
     kenntnisse_betriebssysteme_txt text,
     kenntnisse_netzwerke_txt text,
-    frontendkey uuid DEFAULT uuid_generate_v4(),
+    frontendkey uuid,
     abgeschlossen boolean DEFAULT false NOT NULL,
     ist_bestaetigt boolean DEFAULT false,
     passwort character varying(128),
@@ -135,7 +135,7 @@ SET default_with_oids = false;
 
 CREATE TABLE uploads (
     subjekt character varying(64) NOT NULL,
-    upload_id bigint DEFAULT pseudo_encrypt((nextval('upload_ids'::regclass))::integer) NOT NULL,
+    upload_id bigint DEFAULT nextval('upload_ids'::regclass) NOT NULL,
     dateiname character varying(128) NOT NULL,
     kommentar text,
     zu_bewerbung bigint NOT NULL,
